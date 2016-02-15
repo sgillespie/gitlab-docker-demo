@@ -12,7 +12,11 @@ Before running this, install
  * Docker Compose
 
 # Running
-TODO[sgillespie]
+Start gitlab
+
+    docker-compose -f docker-compose.gitlab.yml up -d
+
+Go to http://127.0.0.1:8080 and login as root/5iveL!fe.
 
 # License
 This demo is distributed using the MIT License. For more information please 
