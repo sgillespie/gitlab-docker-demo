@@ -18,8 +18,15 @@ Before running this, install
 
 Go to http://127.0.0.1:8080 and login as root/5iveL!fe.
 
-**Get the registration token**
-Go to http://127.0.0.1:8080/admin/runners, and note the registration token near the top.
+**Add the registration token**
+ * Go to http://127.0.0.1:8080/admin/runners and note the registration token.
+ * Add the token to gitlab_runner.env
+ 
+    REGISTRATION_TOKEN=XXXXXXXXXXXXXXXXXXXXX
+
+**Start the runner**
+
+    docker-compose -f docker-compose.runners.yml up -d
 
 # License
 This demo is distributed using the MIT License. For more information please 

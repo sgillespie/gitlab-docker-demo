@@ -1,0 +1,21 @@
+gitlab_runner_shell:
+  image: sgillespie/gitlab-runner:0.1.0
+  command: run
+  container_name: gitlab-runner-shell
+  env_file:
+    - gitlab_runner.env
+  environment:
+    CI_SERVER_URL: http://gitlab.example.com/ci
+    RUNNER_EXECUTOR: shell
+    RUNNER_SHELL: /bin/sh
+  external_links:
+    - gitlab:gitlab.example.com
+  volumes_from:
+    - gitlab_runner_shell_data
+    
+gitlab_runner_shell_data:
+  image: alpine
+  command: /bin/true
+  container_name: gitlab-runner-shell-data
+  volumes:
+    - /etc/gitlab-runner
