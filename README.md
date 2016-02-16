@@ -38,5 +38,6 @@ see LICENSE.
 # Acknowledgements
 This demo uses several open source tools
  * GitLab
+ * GitLab CI Multi-Runner
  * Docker
  * Docker Compose
