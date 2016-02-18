@@ -1,5 +1,5 @@
 gitlab_runner_shell:
-  image: sgillespie/gitlab-runner:0.1.0
+  build: gitlab-runner
   command: run
   container_name: gitlab-runner-shell
   env_file:
@@ -7,9 +7,13 @@ gitlab_runner_shell:
   environment:
     CI_SERVER_URL: http://gitlab.example.com/ci
     RUNNER_EXECUTOR: shell
-    RUNNER_SHELL: /bin/sh
+    RUNNER_SHELL: bash
   external_links:
     - gitlab:gitlab.example.com
+  hostname: runner-shell
+  privileged: true
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
   volumes_from:
     - gitlab_runner_shell_data
     
