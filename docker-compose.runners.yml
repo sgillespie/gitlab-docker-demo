@@ -24,3 +24,30 @@ gitlab_runner_shell_data:
   container_name: gitlab-runner-shell-data
   volumes:
     - /etc/gitlab-runner
+
+gitlab_runner_docker:
+  image: sgillespie/gitlab-runner:0.4.0
+  container_name: gitlab-runner-docker
+  env_file:
+    - gitlab_runner.env
+  environment:
+    CI_SERVER_URL: http://gitlab.example.com/ci
+    DOCKER_IMAGE: ubuntu:latest
+    DOCKER_LINKS: gitlab:gitlab.example.com
+    RUNNER_EXECUTOR: docker
+    RUNNER_TAG_LIST: docker
+  external_links:
+    - gitlab:gitlab.example.com
+    - gitlab-registry:registry
+  hostname: runner-docker
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  volumes_from:
+    - gitlab_runner_docker_data
+
+gitlab_runner_docker_data:
+  image: alpine:latest
+  command: /bin/true
+  container_name: gitlab-runner-docker-data
+  volumes:
+    - /etc/gitlab-runner
