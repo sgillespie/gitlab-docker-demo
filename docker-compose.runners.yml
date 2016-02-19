@@ -15,16 +15,7 @@ gitlab_runner_shell:
   hostname: runner-shell
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-  volumes_from:
-    - gitlab_runner_shell_data
     
-gitlab_runner_shell_data:
-  image: alpine
-  command: /bin/true
-  container_name: gitlab-runner-shell-data
-  volumes:
-    - /etc/gitlab-runner
-
 gitlab_runner_docker:
   image: sgillespie/gitlab-runner:0.4.0
   container_name: gitlab-runner-docker
@@ -42,12 +33,3 @@ gitlab_runner_docker:
   hostname: runner-docker
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-  volumes_from:
-    - gitlab_runner_docker_data
-
-gitlab_runner_docker_data:
-  image: alpine:latest
-  command: /bin/true
-  container_name: gitlab-runner-docker-data
-  volumes:
-    - /etc/gitlab-runner
