@@ -8,10 +8,11 @@ gitlab_runner_shell:
     CI_SERVER_URL: http://gitlab.example.com/ci
     RUNNER_EXECUTOR: shell
     RUNNER_SHELL: bash
+    RUNNER_TAG_LIST: shell
   external_links:
     - gitlab:gitlab.example.com
+    - gitlab-registry:registry
   hostname: runner-shell
-  privileged: true
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
   volumes_from:

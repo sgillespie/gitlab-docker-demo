@@ -17,3 +17,18 @@ gitlab_data:
     - /etc/gitlab
     - /var/log/gitlab
     - /var/opt/gitlab
+
+registry:
+  image: registry:latest
+  container_name: gitlab-registry
+  ports:
+    - "5000:5000"
+  volumes_from:
+    - registry_data
+
+registry_data:
+  image: alpine:latest
+  command: /bin/true
+  container_name: gitlab-registry-data
+  volumes:
+    - /var/lib/registry
